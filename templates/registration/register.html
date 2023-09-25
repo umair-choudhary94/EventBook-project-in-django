@@ -1,0 +1,80 @@
+{% extends "basic.html" %}
+{% load custom_filters %}
+{% load static %}
+{% block content %}
+<div style="margin-top:150px;">
+  
+<div class="text-center ">
+  <i class="fa-solid fa-user-plus"></i>
+  <p>SignUp</p>
+</div>
+                <div class="row">
+                  
+                
+                    <div class="col-md-5 col-12 mx-auto">
+                      <form method="POST" class="signup-form" id="signup-form">
+                        <div class="sf-input-list">
+                          {%csrf_token%}
+                          {{form.as_p}}
+                        <button type="submit" class="btn btn-success text-left w-100"><span>Sign Up</span></button>
+                       <br><br>
+                        Already have account?
+                        <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+                      </form>
+                    </div>
+                </div>
+              </div>       
+            </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+   <script>
+        $(document).ready(function(){
+        $("#id_username").hide()
+        $("#id_username").attr('placeholder', '{{form.username.label}}');
+        $("#id_password").attr('placeholder', '{{form.password.label}}');
+        $("#id_first_name").attr('placeholder', '{{form.first_name.label}}');
+        $("#id_last_name").attr('placeholder', '{{form.last_name.label}}');
+        $("#id_email").attr('placeholder', '{{form.email.label}}');
+        $("#id_password1").attr('placeholder', 'Password');
+        $("#id_password2").attr('placeholder', 'Confirm Password');
+        $('.errorlist').attr('class','alert alert-danger')
+        $("#id_username").addClass('form-control')
+        $("#id_password").addClass('form-control')
+        $("#id_first_name").addClass('form-control')
+        $("#id_last_name").addClass('form-control')
+        $("#id_email").addClass('form-control')
+        $("#id_password1").addClass('form-control')
+        $("#id_password2").addClass('form-control')
+        $("#id_role").addClass('form-control')
+       
+        $('label').css('display','none')
+        $('.helptext').css('display','none')
+        $('#id_password1').attr('type','password')
+        $('#id_password2').attr('type','password')
+
+
+        $('#signup-form').submit(function(e){
+          e.preventDefault();
+          email=$("#id_email").val()
+          if(email==='')
+          {
+            alert('Please Enter Email')
+          }
+          else
+          {
+            $("#id_username").val(email)
+            this.submit()
+          }
+        })
+    });
+   </script>
+
+{% endblock %}
+
+
+
+
+
+
+

@@ -1,0 +1,34 @@
+{% extends "basic.html" %}
+{% load custom_filters %}
+{% load static %}
+{% block content %}
+        <div class="vh-100 d-flex justify-content-center align-items-center">
+            <div class="col-md-4">
+                <div class="border border-3 border-success"></div>
+                <div class="card  bg-white shadow p-5">
+                    
+                    
+                        <h1><b>{{ detail.name }}</b></h1>
+                        <p>{{ detail.description }}</p>
+                        
+                            <div class="d-flex my-4"><span class="me-5">Dated:<b>{{ detail.date }}</b></span>
+                            <span>Venue:<b>{{ detail.location }}</b></span></div>
+                            <div class="d-flex mb-5">
+                                <span class="me-5">Max Participants:<b>{{ detail.max_participants }}</b></span><br>
+                                <span class="d-flex">Orgnized by: <a href="{% url 'view_user_profile' detail.orginzer.pk %}" style="text-decoration: none;">
+                                <span><b>{{ detail.orginzer.first_name}} {{ detail.orginzer.last_name }}</b></span>  
+                                </a></span></div>
+                            
+                    
+                        {% if request.user in detail.participants.all %}
+                        <span class="btn btn-sm btn-success w-100 text-white"><i class="fa fa-check-circle"></i> Booked</span>
+                        {% else %}
+                        <a href="{% url 'prompt' detail.pk %}" class="btn btn-sm btn-success def-bg-color w-100 text-white"><i class="fa-solid fa-clipboard-check"></i> Book Now</a>
+                      {% endif %}
+                         
+                        <a href="{% url 'viewe_all_event' %}" class="btn btn-sm btn-success my-1">Back To Events</a>
+                    </div>
+               
+            </div>
+        </div>
+{% endblock %}

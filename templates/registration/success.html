@@ -1,0 +1,114 @@
+{% extends "basic.html" %}
+{% load custom_filters %}
+{% load static %}
+{% block content %}
+
+
+    <style>
+     body
+     {
+       background-color: rgb(247, 243, 243);
+     }   
+
+            	/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #000; 
+ 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #9E0303; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}   
+.txt-color
+{
+	color:#9E0303;
+}
+
+.soc-wrapper{
+    display: flex;
+    padding: 20px;
+    justify-content: center;
+}
+.social-block {
+ margin: 0 10px;
+  padding: 20px;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: blanchedalmond;
+}
+.social-block .fb,.goo,.twi,a{
+    color:white;
+} 
+.social-block a i{
+  font-size:23px;
+}
+
+.fb
+{
+    background-color:#097EEB;
+    color:white;
+}
+
+
+.twi
+{
+    background-color:#1DA1F2;
+    color:white;
+}
+
+.goo
+{
+    background-color:#E94235;
+    color:white;
+}
+
+</style>
+
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+    <div class="text-center" style="height: 100vh; overflow: hidden; display: flex; justify-content: center; align-items: center;">
+        <div style="font-family:sans-serif;">
+            <h2 class="text-success"><span class="text-light"><small>mail sent at : </small></span><small>{{mail}}</small></h2><br>
+            <h5 style="color: rgb(46, 46, 45);">{{msg}}</h5>
+            <p style="color: red;">Note:if email not recieved please check it in spam</p>
+        </div>
+    </div>
+    <!-- Sign Up Section End -->
+     <p class="text-center">&copy; <a href="/">www.sparkingmania.com</a></p>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <!-- Js Plugins -->
+    
+   <script>
+        $(document).ready(function(){
+        $("#id_username").attr('placeholder', '{{form.username.label}}');
+        $("#id_password").attr('placeholder', '{{form.password.label}}');
+        $('.errorlist').attr('class','alert alert-danger')
+        
+       
+        $('label').css('display','none')
+    });
+   </script>
+{% endblock %}
+
+
+
+

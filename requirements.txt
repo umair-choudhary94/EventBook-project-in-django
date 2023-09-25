@@ -1,0 +1,14 @@
+aiodns==3.0.0
+aiosmtpd==1.4.4.post2
+asgiref==3.7.1
+atpublic==3.1.1
+attrs==23.1.0
+cffi==1.15.1
+Django==4.2.1
+Django-Verify-Email==2.0.3
+Pillow==9.5.0
+pycares==4.3.0
+pycparser==2.21
+sqlparse==0.4.4
+tzdata==2023.3
+verify-email==2.4.3

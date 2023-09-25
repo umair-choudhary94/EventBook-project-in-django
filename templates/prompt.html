@@ -1,0 +1,21 @@
+{% extends "basic.html" %}
+{% load custom_filters %}
+{% load static %}
+{% block content %}
+        <div class="vh-100 d-flex justify-content-center align-items-center">
+            <div class="col-md-4">
+                <div class="border border-3 border-success"></div>
+                <div class="card  bg-white shadow p-5">
+                    
+                    <div class="text-center">
+                        <p><b>Do You Want To Book Event?</b></p>
+                        <h3><b>{{ detail.name }}?</b></h3>
+                        <br>
+                        <a href="{% url 'book_unbook' detail.pk %}" class="btn btn-outline-success">Confirm</a>
+                        <a href="{% url 'index' %}" class="btn btn-outline-danger">Cancel</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}

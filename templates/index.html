@@ -1,0 +1,111 @@
+{% extends "basic.html" %}
+{% load custom_filters %}
+{% load static %}
+{% block content %}
+
+
+
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero">
+
+    <div class="container">
+      <div class="row justify-content-between">
+        <div class="col-lg-7 pt-5 pt-lg-0 order-2 order-lg-1 d-flex align-items-center">
+          <div data-aos="zoom-out">
+            <h1>Book or Create <span>Event</span></h1>
+            <h2>about your website</h2>
+            <div class="text-center text-lg-start">
+              <a href="{% url 'viewe_all_event' %}" class="btn-get-started scrollto"><span class="d-flex justify-content-between"><span class="mx-2"><i class="fa-regular fa-calendar-days"></i></span><span>Find Events</span></span></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 order-1 order-lg-2 hero-img" data-aos="zoom-out" data-aos-delay="300">
+          <img src="{% static 'assets/img/hero-img.png' %}" class="img-fluid animated" alt="">
+        </div>
+      </div>
+    </div>
+
+    <svg class="hero-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28 " preserveAspectRatio="none">
+      <defs>
+        <path id="wave-path" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z">
+      </defs>
+      <g class="wave1">
+        <use xlink:href="#wave-path" x="50" y="3" fill="rgba(255,255,255, .1)">
+      </g>
+      <g class="wave2">
+        <use xlink:href="#wave-path" x="50" y="0" fill="rgba(255,255,255, .2)">
+      </g>
+      <g class="wave3">
+        <use xlink:href="#wave-path" x="50" y="9" fill="#fff">
+      </g>
+    </svg>
+
+  </section><!-- End Hero -->
+
+  <main id="main">
+
+   
+   
+
+   
+    <!-- ======= Team Section ======= -->
+    <section id="team" class="team">
+      <div class="container">
+
+        <div class="section-title" data-aos="fade-up">
+          <h2>Event</h2>
+          <p>Latest Events</p>
+        </div>
+
+        <div class="row" data-aos="fade-left">
+          {% for e in events %}
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12" >
+            <div class="card " >
+               
+                <div class="card-body" >
+                  <h5 class="card-title">{{ e.name }}</h5>
+                  <p class="card-text" style="font-size: 9pt; text-align: justify; min-height: 75px; max-height:75px; overflow-y: auto;">{{ e.description }}</p>
+                  <p class="card-text " style="font-size: 9pt;"><i class="fa-solid fa-location-dot text-danger" style="margin-right: 3px;"></i>{{ e.location }}</p>
+                  {% if request.user in e.participants.all %}
+                    <a href="{% url 'book_unbook' e.pk %}" class="btn btn-sm btn-light def-bg-color w-100 text-white"><i class="fa fa-check-circle"></i> Booked</a>
+                  {% else %}
+                  <a href="{% url 'prompt' e.pk %}" class="btn btn-sm btn-success def-bg-color w-100 text-white"><i class="fa-solid fa-clipboard-check"></i> Book Now</a>
+
+                  {% endif %}
+                </div>
+                <div class="card-footer bg-white" style="border-top: none;">
+                  <span class="d-flex align-items-center justify-content-between" >
+                    <a href="{% url 'view_user_profile' e.orginzer.pk %}" style="text-decoration: none;">
+                        <div>
+                            <img src="{{ e.orginzer.profile.profilePic.url }}" style="width: 30px; height: 30px; border-radius:50%;">
+                            <span class="mx-2 text-muted" style="font-size:9pt;">{{ e.orginzer.first_name}} {{ e.orginzer.last_name }}</span>
+                        </div>
+                   </a>
+                    <div class="text-muted" style="font-size:9pt;">
+                        <span class="badge  bg-light text-dark p-2">{{ e.date }}</span>
+                    </div>
+                </span>
+                
+                </div>
+              </div><!--End of card-->
+        </div><!--End of col-->
+        {% endfor %}
+        <div class="col-12" style="margin-top: 15px; margin-bottom: 15px;"><a href="" class="btn btn-success def-bg-color">See All</a></div>
+        </div>
+        
+      </div>
+    </section><!-- End Team Section -->
+
+    
+  </main><!-- End #main -->
+
+  
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <div id="preloader"></div>
+
+
+
+
+
+  {% endblock content %}
